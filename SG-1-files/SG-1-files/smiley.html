@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Smiley</title>
+</head>
+
+<style type="text/css">
+    body {
+        background: #dddddd;
+    }
+
+    canvas {
+        background: #ffffff;
+        cursor: pointer;
+        margin-left: 10px;
+        margin-top: 10px;
+        box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    }
+</style>
+
+<script>
+    let ctx;
+    /* 
+        - 4 arcs
+        - horizon line (line)
+        - tree (path with 3 points plus a line for a trunk)
+        - smiley face is black and yellow, tree brown and green
+    
+    */
+
+    "use strict";
+    window.onload = init;
+
+    function init() {
+        console.log("init() called");
+
+        let canvas = document.querySelector('canvas');
+
+        ctx = canvas.getContext('2d');
+
+        //set state variables
+        ctx.fillStyle = "yellow";
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 5;
+
+        //horizon line
+        ctx.strokeStyle = "black";
+        ctx.beginPath();
+        ctx.moveTo(0, 375);
+        ctx.lineTo(750, 375);
+        ctx.closePath();
+        ctx.stroke();
+
+        //coloring the sky
+        ctx.fillStyle = "rgb(173, 216, 230, 0.5)";
+        ctx.fillRect(0, 0, 750, 375);
+
+        //coloring the ground
+        ctx.fillStyle = "rgb(128, 189, 132, 0.5)";
+        ctx.fillRect(0, 375, 750, 750);
+
+        //left ear
+        ctx.fillStyle = "yellow";
+        ctx.beginPath();
+
+        ctx.moveTo(150, 0);
+        ctx.lineTo(300, 90);
+        ctx.lineTo(225, 150);
+        
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        //right ear
+        ctx.fillStyle = "yellow";
+        ctx.beginPath();
+
+        ctx.moveTo(550, 0);
+        ctx.lineTo(520, 150);
+        ctx.lineTo(425, 90);
+        
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+        
+        //Circle face
+        ctx.beginPath();
+        //x, y, radius, startangle, endangle, clockwise
+        ctx.arc(375, 250, 180, 0, Math.PI * 2, false);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        //eye on left
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.arc(300, 150, 30, 0, Math.PI * 2, false);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        //eye on right
+        ctx.beginPath();
+        ctx.arc(420, 150, 30, 0, Math.PI * 2, false);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        //left eye glare
+        ctx.fillStyle = "white";
+        ctx.beginPath();
+        ctx.arc(290, 135, 10, 0, Math.PI * 2, false);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        //right eye glare
+        ctx.beginPath();
+        ctx.arc(410, 135, 10, 0, Math.PI * 2, false);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        //nose
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.arc(350, 200, 10, 0, Math.PI, false);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        //mouth
+        ctx.fillStyle = "pink";
+        ctx.beginPath();
+        ctx.arc(350, 300, 50, 0, Math.PI * 2, false);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        //left cheek
+        ctx.fillStyle = "red";
+        ctx.beginPath();
+        ctx.arc(225, 250, 30, 0, Math.PI * 2, false);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        //right cheek
+        ctx.fillStyle = "red";
+        ctx.beginPath();
+        ctx.arc(475, 250, 30, 0, Math.PI * 2, false);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        //tree
+        ctx.fillStyle = "green";
+        ctx.beginPath();
+
+        ctx.moveTo(50, 300);
+        ctx.lineTo(100, 300);
+        ctx.lineTo(75, 150);
+        
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        //tree trunk
+        ctx.strokeStyle = "brown";
+        ctx.beginPath();
+        ctx.moveTo(75, 300);
+        ctx.lineTo(75, 375);
+        ctx.closePath();
+        ctx.lineWidth = 15;
+        ctx.stroke();
+
+    }
+
+    console.log("In bottom of <script> tag!");
+</script>
+
+<body>
+    <canvas width="750" height="500">
+        Get a browser that supports Canvas!
+        <!-- The user will only see the above text if their browser is older and doesn't support <canvas> -->
+
+    </canvas>
+</body>
+
+</html>

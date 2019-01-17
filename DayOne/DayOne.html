@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta charset="UTF-8">
+   <title>Day One</title>
+</head>
+
+<style>
+   * {
+       font-size: 1.3em;
+   }
+
+   button {
+       width: 100px;
+       height: 50px;
+   }
+</style>
+
+<body>
+   <h1>Greeter!</h1>
+   <input id="firstName" placeholder="type your first name">
+   <input id="lastName" placeholder="type your last name">
+   <button>Greet</button>
+   <p id="output">???</p>
+</body>
+
+<script>
+   //has to go at the end so the page will have already loaded
+   /* Pseudo code
+       - save the typed in value as variable
+       - if value is empty, change it to mr.x
+       - change text to paragraph
+       - when button is clicked
+   */
+  
+   function init() {
+       let button = document.querySelector("button");
+       button.onclick = buttonClicked;
+   }
+
+   function buttonClicked() {
+       console.log("button clicked");
+
+       //trim() gets rid of any leading spaces
+       //when you throw an or, entered a boolean - everything converted to t/f
+       //falsey values = false, null, undefined, zero, "", '', NaN
+       //shorthand way of saying if the beginning is false, then else
+       let firstName = document.getElementById("firstName").value.trim() || "Mr.";
+       let lastName = document.getElementById("lastName").value.trim() || "X";
+
+       let displayName = document.querySelector("#output");
+      
+       displayName.innerHTML = "Hello " + firstName + " " + lastName;
+       //can use innerHTML or innerText ^
+   }
+
+   init();
+   //window.onload = init; -- only called after window is loaded
+
+   document.getElementById("output").style.color = "red";
+   document.getElementById("output").style.backgroundColor = "yellow";
+  
+</script>
+
+</html>
+
+
